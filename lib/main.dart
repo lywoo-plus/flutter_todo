@@ -4,8 +4,15 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  int counter = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -23,17 +30,32 @@ class MyApp extends StatelessWidget {
           spacing: 16,
           mainAxisSize: .min,
           children: [
-            FloatingActionButton(onPressed: () => {print('click')}, child: Icon(Icons.add)),
-            FloatingActionButton(onPressed: () => {print('click')}, child: Icon(Icons.add)),
+            FloatingActionButton(
+              onPressed: () => {
+                setState(() {
+                  counter++;
+                }),
+              },
+              child: Icon(Icons.add),
+            ),
+            FloatingActionButton(
+              onPressed: () => {
+                setState(() {
+                  counter--;
+                }),
+              },
+              child: Icon(Icons.remove),
+            ),
           ],
         ),
+        body: Center(child: Text('Counter: ' + counter.toString(), style: TextStyle(fontSize: 24))),
         bottomNavigationBar: NavigationBar(
           destinations: [
             NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
             NavigationDestination(icon: Icon(Icons.settings), label: 'Settings'),
           ],
-          onDestinationSelected: (v) {
-            print(v);
+          onDestinationSelected: (index) {
+            print(index);
           },
         ),
       ),
