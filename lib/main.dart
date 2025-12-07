@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo/widgets/nav_bar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -49,15 +50,7 @@ class _MyAppState extends State<MyApp> {
           ],
         ),
         body: Center(child: Text('Counter: ' + counter.toString(), style: TextStyle(fontSize: 24))),
-        bottomNavigationBar: NavigationBar(
-          destinations: [
-            NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-            NavigationDestination(icon: Icon(Icons.settings), label: 'Settings'),
-          ],
-          onDestinationSelected: (index) {
-            print(index);
-          },
-        ),
+        bottomNavigationBar: NavBar(),
       ),
     );
   }
