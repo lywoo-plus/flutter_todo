@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo/views/widget_tree.dart';
 import 'package:flutter_todo/widgets/nav_bar.dart';
 
 void main() {
@@ -22,36 +23,38 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink, brightness: Brightness.dark),
       ),
-      home: Scaffold(
-        appBar: AppBar(title: Text('Flutter Todo')),
-        drawer: Drawer(
-          child: SafeArea(child: ListTile(title: Text('Settings'))),
-        ),
-        floatingActionButton: Column(
-          spacing: 16,
-          mainAxisSize: .min,
-          children: [
-            FloatingActionButton(
-              onPressed: () => {
-                setState(() {
-                  counter++;
-                }),
-              },
-              child: Icon(Icons.add),
+      home: true
+          ? WidgetTree()
+          : Scaffold(
+              appBar: AppBar(title: Text('Flutter Todo')),
+              drawer: Drawer(
+                child: SafeArea(child: ListTile(title: Text('Settings'))),
+              ),
+              floatingActionButton: Column(
+                spacing: 16,
+                mainAxisSize: .min,
+                children: [
+                  FloatingActionButton(
+                    onPressed: () => {
+                      setState(() {
+                        counter++;
+                      }),
+                    },
+                    child: Icon(Icons.add),
+                  ),
+                  FloatingActionButton(
+                    onPressed: () => {
+                      setState(() {
+                        counter--;
+                      }),
+                    },
+                    child: Icon(Icons.remove),
+                  ),
+                ],
+              ),
+              body: Center(child: Text('Counter: ' + counter.toString(), style: TextStyle(fontSize: 24))),
+              bottomNavigationBar: NavBar(),
             ),
-            FloatingActionButton(
-              onPressed: () => {
-                setState(() {
-                  counter--;
-                }),
-              },
-              child: Icon(Icons.remove),
-            ),
-          ],
-        ),
-        body: Center(child: Text('Counter: ' + counter.toString(), style: TextStyle(fontSize: 24))),
-        bottomNavigationBar: NavBar(),
-      ),
     );
   }
 }
