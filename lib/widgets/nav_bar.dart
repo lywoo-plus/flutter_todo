@@ -13,7 +13,7 @@ class NavBar extends StatelessWidget {
           selectedIndex: value,
           destinations: [
             NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-            NavigationDestination(icon: Icon(Icons.settings), label: 'Settings'),
+            NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
           ],
           onDestinationSelected: (index) {
             selectedPageNotifier.value = index;

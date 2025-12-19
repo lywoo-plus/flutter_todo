@@ -17,12 +17,12 @@ class WidgetTree extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              themeNotifier.value = themeNotifier.value == EnumTheme.light ? EnumTheme.dark : EnumTheme.light;
+              themeNotifier.value = themeNotifier.value == Brightness.light ? Brightness.dark : Brightness.light;
             },
             icon: ValueListenableBuilder(
               valueListenable: themeNotifier,
               builder: (context, value, child) {
-                return Icon(value == EnumTheme.light ? Icons.dark_mode : Icons.light_mode);
+                return Icon(value == Brightness.light ? Icons.dark_mode : Icons.light_mode);
               },
             ),
           ),

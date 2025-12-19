@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo/data/notifier.dart';
 import 'package:flutter_todo/views/widget_tree.dart';
 import 'package:flutter_todo/widgets/nav_bar.dart';
 
@@ -18,43 +19,48 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink, brightness: Brightness.dark),
-      ),
-      home: true
-          ? WidgetTree()
-          : Scaffold(
-              appBar: AppBar(title: Text('Flutter Todo')),
-              drawer: Drawer(
-                child: SafeArea(child: ListTile(title: Text('Settings'))),
-              ),
-              floatingActionButton: Column(
-                spacing: 16,
-                mainAxisSize: .min,
-                children: [
-                  FloatingActionButton(
-                    onPressed: () => {
-                      setState(() {
-                        counter++;
-                      }),
-                    },
-                    child: Icon(Icons.add),
+    return ValueListenableBuilder(
+      valueListenable: themeNotifier,
+      builder: (context, value, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            colorScheme: .fromSeed(seedColor: Colors.pink, brightness: themeNotifier.value),
+          ),
+          home: true
+              ? WidgetTree()
+              : Scaffold(
+                  appBar: AppBar(title: Text('Flutter Todo')),
+                  drawer: Drawer(
+                    child: SafeArea(child: ListTile(title: Text('Settings'))),
                   ),
-                  FloatingActionButton(
-                    onPressed: () => {
-                      setState(() {
-                        counter--;
-                      }),
-                    },
-                    child: Icon(Icons.remove),
+                  floatingActionButton: Column(
+                    spacing: 16,
+                    mainAxisSize: .min,
+                    children: [
+                      FloatingActionButton(
+                        onPressed: () => {
+                          setState(() {
+                            counter++;
+                          }),
+                        },
+                        child: Icon(Icons.add),
+                      ),
+                      FloatingActionButton(
+                        onPressed: () => {
+                          setState(() {
+                            counter--;
+                          }),
+                        },
+                        child: Icon(Icons.remove),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              body: Center(child: Text('Counter: ' + counter.toString(), style: TextStyle(fontSize: 24))),
-              bottomNavigationBar: NavBar(),
-            ),
+                  body: Center(child: Text('Counter: ' + counter.toString(), style: TextStyle(fontSize: 24))),
+                  bottomNavigationBar: NavBar(),
+                ),
+        );
+      },
     );
   }
 }
