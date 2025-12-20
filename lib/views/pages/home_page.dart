@@ -26,6 +26,43 @@ class _HomePageState extends State<HomePage> {
           spacing: 16,
           mainAxisAlignment: .center,
           children: [
+            Hero(
+              tag: 'logo',
+              child: AspectRatio(
+                aspectRatio: 1,
+                child: Material(
+                  color: Colors.pink.shade100,
+                  borderRadius: .circular(16),
+                  clipBehavior: Clip.antiAlias, // 🔑 single clip source
+                  child: InkWell(
+                    onTap: () => print('InkWell'),
+                    splashColor: Colors.pink,
+                    child: Padding(
+                      padding: .all(16),
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          border: .all(color: Colors.green, width: 4),
+                          borderRadius: .circular(16),
+                        ),
+                        child: Padding(
+                          padding: .all(4), // green border thickness
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              borderRadius: .circular(12),
+                              image: const DecorationImage(
+                                image: AssetImage('assets/images/nuxt.png'),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
             TextField(
               decoration: InputDecoration(hintText: 'Name', border: OutlineInputBorder()),
               onChanged: (value) => inputValue = value,
@@ -78,26 +115,13 @@ class _HomePageState extends State<HomePage> {
               },
             ),
 
-            Material(
-              color: Colors.white,
-              child: InkWell(
-                splashColor: Colors.pink,
-                child: Container(
-                  padding: .all(16),
-                  decoration: BoxDecoration(border: Border.all(color: Colors.pink)),
-                  child: Image.asset('assets/images/nuxt.png'),
-                ),
-                onTap: () {
-                  print('InkWell');
-                },
-              ),
-            ),
             GestureDetector(
               child: Image.asset('assets/images/nuxt.png'),
               onTap: () {
                 print('GestureDetector');
               },
             ),
+
             InkResponse(onTap: () {}, child: Icon(Icons.favorite)),
           ],
         ),
