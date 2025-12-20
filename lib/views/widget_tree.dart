@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/data/notifier.dart';
+import 'package:flutter_todo/util.dart';
 import 'package:flutter_todo/views/pages/home_page.dart';
 import 'package:flutter_todo/views/pages/profile_page.dart';
 import 'package:flutter_todo/views/pages/setting_page.dart';
+import 'package:flutter_todo/views/pages/welcome_page.dart';
 import 'package:flutter_todo/widgets/nav_bar.dart';
 
 List<Widget> pages = [HomePage(), ProfilePage()];
@@ -32,6 +34,12 @@ class WidgetTree extends StatelessWidget {
               Navigator.push(context, MaterialPageRoute(builder: (context) => SettingPage(title: 'Page')));
             },
             icon: Icon(Icons.settings),
+          ),
+          IconButton(
+            onPressed: () {
+              pushReplacement(context: context, page: WelcomePage());
+            },
+            icon: Icon(Icons.logout),
           ),
         ],
       ),

@@ -35,7 +35,17 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: .circular(16),
                   clipBehavior: Clip.antiAlias, // 🔑 single clip source
                   child: InkWell(
-                    onTap: () => print('InkWell'),
+                    onTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Tapped!'),
+                          backgroundColor: Colors.green,
+                          duration: Duration(seconds: 1),
+                          behavior: .floating,
+                          shape: RoundedRectangleBorder(borderRadius: .circular(12)),
+                        ),
+                      );
+                    },
                     splashColor: Colors.pink,
                     child: Padding(
                       padding: .all(16),
@@ -45,13 +55,14 @@ class _HomePageState extends State<HomePage> {
                           borderRadius: .circular(16),
                         ),
                         child: Padding(
-                          padding: .all(4), // green border thickness
+                          padding: .all(4),
                           child: DecoratedBox(
                             decoration: BoxDecoration(
                               borderRadius: .circular(12),
                               image: const DecorationImage(
                                 image: AssetImage('assets/images/nuxt.png'),
                                 fit: BoxFit.cover,
+                                colorFilter: .mode(Colors.blue, .multiply),
                               ),
                             ),
                           ),
@@ -63,12 +74,27 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
 
+            InkResponse(
+              splashColor: Colors.green,
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text('Title'),
+                    content: Text('Content'),
+                    actions: [TextButton(onPressed: () => Navigator.pop(context), child: Text('Close'))],
+                  ),
+                );
+              },
+              child: Icon(Icons.favorite),
+            ),
+
             TextField(
               decoration: InputDecoration(hintText: 'Name', border: OutlineInputBorder()),
               onChanged: (value) => inputValue = value,
               onEditingComplete: () => setState(() => print(inputValue)),
             ),
-            Text(inputValue),
+            Text('Input value: ' + inputValue),
 
             CheckboxListTile(
               tristate: true,
@@ -121,8 +147,6 @@ class _HomePageState extends State<HomePage> {
                 print('GestureDetector');
               },
             ),
-
-            InkResponse(onTap: () {}, child: Icon(Icons.favorite)),
           ],
         ),
       ),
