@@ -74,6 +74,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
 
+            Divider(color: Colors.green, indent: 50, endIndent: 50),
             InkResponse(
               splashColor: Colors.green,
               onTap: () {
@@ -87,6 +88,24 @@ class _HomePageState extends State<HomePage> {
                 );
               },
               child: Icon(Icons.favorite),
+            ),
+            SizedBox(height: 24, child: VerticalDivider(color: Colors.green)),
+
+            Card(
+              elevation: 4,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              clipBehavior: Clip.antiAlias, // important for children
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Text(
+                  'Styled Card',
+                  style: TextStyle(
+                    fontSize: Theme.of(context).textTheme.headlineSmall?.fontSize,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.green,
+                  ),
+                ),
+              ),
             ),
 
             TextField(
