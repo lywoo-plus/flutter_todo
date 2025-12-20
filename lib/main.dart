@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/data/notifier.dart';
-import 'package:flutter_todo/views/widget_tree.dart';
+import 'package:flutter_todo/views/pages/welcome_page.dart';
 import 'package:flutter_todo/widgets/nav_bar.dart';
 
 void main() {
@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
             colorScheme: .fromSeed(seedColor: Colors.pink, brightness: themeNotifier.value),
           ),
           home: true
-              ? WidgetTree()
+              ? WelcomePage()
               : Scaffold(
                   appBar: AppBar(title: Text('Flutter Todo')),
                   drawer: Drawer(
