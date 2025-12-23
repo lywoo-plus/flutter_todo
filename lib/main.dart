@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_todo/data/notifier.dart';
 import 'package:flutter_todo/views/pages/welcome_page.dart';
 import 'package:flutter_todo/widgets/nav_bar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,6 +17,19 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   int counter = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    initTheme();
+  }
+
+  void initTheme() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.getString('theme');
+
+    themeNotifier.value = prefs.getString('theme') == 'light' ? Brightness.light : Brightness.dark;
+  }
 
   @override
   Widget build(BuildContext context) {

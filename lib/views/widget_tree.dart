@@ -6,6 +6,7 @@ import 'package:flutter_todo/views/pages/profile_page.dart';
 import 'package:flutter_todo/views/pages/setting_page.dart';
 import 'package:flutter_todo/views/pages/welcome_page.dart';
 import 'package:flutter_todo/widgets/nav_bar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 List<Widget> pages = [HomePage(), ProfilePage()];
 
@@ -19,8 +20,11 @@ class WidgetTree extends StatelessWidget {
         title: Text('Flutter Todo'),
         actions: [
           IconButton(
-            onPressed: () {
+            onPressed: () async {
               themeNotifier.value = themeNotifier.value == Brightness.light ? Brightness.dark : Brightness.light;
+
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              prefs.setString('theme', themeNotifier.value.name);
             },
             icon: ValueListenableBuilder(
               valueListenable: themeNotifier,
