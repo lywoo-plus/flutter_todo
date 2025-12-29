@@ -91,6 +91,10 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(height: 24, child: VerticalDivider(color: Colors.green)),
 
+            Row(mainAxisAlignment: .center, children: List.generate(3, (i) => Icon(Icons.star))),
+            ...List.generate(3, (i) => Icon(Icons.star)),
+            [Icon(Icons.star)].elementAtOrNull(0) ?? Text('No exists'),
+
             Card(
               elevation: 4,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
