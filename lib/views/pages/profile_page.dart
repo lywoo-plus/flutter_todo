@@ -5,6 +5,8 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final widthScreen = MediaQuery.sizeOf(context);
+
     return Center(
       child: Column(
         spacing: 16,
@@ -13,7 +15,7 @@ class ProfilePage extends StatelessWidget {
           LayoutBuilder(
             builder: (context, constraints) {
               return FractionallySizedBox(
-                widthFactor: constraints.maxWidth > 100 ? 1 : 0.5,
+                widthFactor: widthScreen.width > 100 ? 1 : 0.5,
                 child: Container(
                   margin: .all(8),
                   padding: .all(4),
